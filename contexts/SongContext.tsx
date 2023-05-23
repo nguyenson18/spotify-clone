@@ -38,11 +38,9 @@ const SongContextProvider = ({ children }: { children: ReactNode }) => {
     songReducer,
     defaultSongContextState
   );
-
   useEffect(() => {
     const setCurrentDevice = async () => {
       const availableDevicesResponse = await spotifyApi.getMyDevices();
-
       if (!availableDevicesResponse.body.devices.length) return;
 
       const { id: deviceId, volume_percent } =
@@ -56,7 +54,7 @@ const SongContextProvider = ({ children }: { children: ReactNode }) => {
         },
       });
 
-      await spotifyApi.transferMyPlayback([deviceId as string]);
+      //  await spotifyApi.transferMyPlayback([deviceId as string]);
     };
 
     if (spotifyApi.getAccessToken()) {
@@ -67,7 +65,6 @@ const SongContextProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     const getCurrentPlayingSong = async () => {
       const songInfo = await spotifyApi.getMyCurrentPlayingTrack();
-
       if (!songInfo.body) return;
 
       dispatchSongAction({

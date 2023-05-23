@@ -34,7 +34,7 @@ const Song = ({ item: { track }, itemIndex }: Props) => {
 			}
 		})
 
-		await spotifyApi.play({
+		 await spotifyApi.play({
 			device_id: deviceId,
 			context_uri: selectedPlaylist?.uri,
 			offset: {

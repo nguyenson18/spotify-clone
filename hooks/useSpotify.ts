@@ -17,7 +17,6 @@ const useSpotify = () => {
 
 		spotifyApi.setAccessToken((session as ExtendedSession)?.accessToken)
 	}, [session])
-
 	return spotifyApi
 }
 

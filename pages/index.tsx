@@ -1,14 +1,19 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import Sidebar from '../components/Siderbar'
 import Center from '../components/Center'
+import Player from '../components/Player'
+import PlaylistContextProvider from '../contexts/PlaylistContext'
+import SongContextProvider from '../contexts/SongContext'
+import Sidebar from '../components/Siderbar'
 
 const Home: NextPage = () => {
 	return (
 		<div className='bg-black h-screen overflow-hidden'>
+			<PlaylistContextProvider>
+				<SongContextProvider>
 					<Head>
 						<title>Spotify 2.0</title>
-						<meta name='description' content='Spotify clone' />
+						<meta name='description' content='Spotify by Henry Web Dev' />
 						<link rel='icon' href='/favicon.ico' />
 					</Head>
 
@@ -18,8 +23,10 @@ const Home: NextPage = () => {
 					</main>
 
 					<div className='sticky bottom-0 text-white'>
-						{/* <Player /> */}
+						<Player />
 					</div>
+				</SongContextProvider>
+			</PlaylistContextProvider>
 		</div>
 	)
 }
