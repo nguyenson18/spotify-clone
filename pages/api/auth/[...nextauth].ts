@@ -30,7 +30,6 @@ const refreshAccessToken = async (
 		}
 	}
 }
-
 const jwtCallback: CallbacksOptions['jwt'] = async ({
 	token,
 	account,

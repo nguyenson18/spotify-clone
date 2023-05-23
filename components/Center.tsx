@@ -1,10 +1,11 @@
-import { signOut, useSession } from 'next-auth/react'
-import { usePlaylistContext } from '../contexts/PlaylistContext'
 import Image from 'next/image'
 import UserIcon from '../assets/user.png'
 import { ChevronDownIcon } from '@heroicons/react/outline'
+import { Avatar } from '@mui/material'
+import { signOut, useSession } from 'next-auth/react'
 import { useEffect, useState } from 'react'
 import { pickRandom } from '../utils/pickRandom'
+import { usePlaylistContext } from '../contexts/PlaylistContext'
 import Songs from './Songs'
 
 const colours = [
@@ -18,24 +19,22 @@ const colours = [
 ]
 
 const Center = () => {
-	const {
+    const [fromColour, setFromColour] = useState<string | null>(null)
+
+    const { data: session } = useSession()
+    const {
 		playlistContextState: { selectedPlaylist, selectedPlaylistId }
 	} = usePlaylistContext()
 
-	const { data: session } = useSession()
-
-	const [fromColour, setFromColour] = useState<string | null>(null)
-
-	useEffect(() => {
+    useEffect(() => {
 		setFromColour(pickRandom(colours))
 	}, [selectedPlaylistId])
-
 	return (
 		<div className='flex-grow text-white relative h-screen overflow-y-scroll scrollbar-hidden'>
 			<header className='absolute top-5 right-8'>
 				<div
 					className='flex items-center bg-black space-x-3 opacity-90 hover:opacity-80 cursor-pointer rounded-full py-1 pl-1 pr-2'
-					onClick={() => {
+                    onClick={() => {
 						signOut()
 					}}
 				>

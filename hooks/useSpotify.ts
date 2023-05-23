@@ -7,16 +7,15 @@ const useSpotify = () => {
 	const { data: session } = useSession()
 
 	useEffect(() => {
-		if (!session) return
-
+		// if (!session) return+	
 		// if refresh token fails, redirect to login
-		if (
-			(session as ExtendedSession).error === TokenError.RefreshAccessTokenError
+    	if (
+			(session as ExtendedSession)?.error === TokenError.RefreshAccessTokenError
 		) {
 			signIn()
 		}
 
-		spotifyApi.setAccessToken((session as ExtendedSession).accessToken)
+		spotifyApi.setAccessToken((session as ExtendedSession)?.accessToken)
 	}, [session])
 
 	return spotifyApi
